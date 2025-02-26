@@ -136,7 +136,7 @@ namespace PersonelApp
             }
             else
             {
-                MessageBox.Show("Lütfen silinecek personeli seçin!");.   
+                MessageBox.Show("Lütfen silinecek personeli seçin!"); //
             }
         }
     }
