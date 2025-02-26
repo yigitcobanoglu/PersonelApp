@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            pictureBox2 = new PictureBox();
             label1 = new Label();
             panel2 = new Panel();
+            lbPersonel = new ListBox();
+            label7 = new Label();
             label2 = new Label();
             txtAd = new TextBox();
             txtSoyad = new TextBox();
@@ -41,17 +44,15 @@
             label5 = new Label();
             txtAdres = new TextBox();
             label6 = new Label();
-            label7 = new Label();
-            lbPersonel = new ListBox();
             btnEkle = new Button();
             btnSil = new Button();
             btnYeni = new Button();
-            pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
+            pbYeni = new PictureBox();
+            btnKaydet = new Button();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbYeni).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -64,6 +65,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 50);
             panel1.TabIndex = 0;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.user_avatar;
+            pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(111, 50);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 16;
+            pictureBox2.TabStop = false;
             // 
             // label1
             // 
@@ -84,8 +95,29 @@
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 50);
             panel2.Name = "panel2";
-            panel2.Size = new Size(198, 430);
+            panel2.Size = new Size(198, 428);
             panel2.TabIndex = 1;
+            // 
+            // lbPersonel
+            // 
+            lbPersonel.Dock = DockStyle.Fill;
+            lbPersonel.FormattingEnabled = true;
+            lbPersonel.Location = new Point(0, 27);
+            lbPersonel.Name = "lbPersonel";
+            lbPersonel.Size = new Size(198, 401);
+            lbPersonel.TabIndex = 1;
+            lbPersonel.SelectedIndexChanged += lbPersonel_SelectedIndexChanged;
+            // 
+            // label7
+            // 
+            label7.BackColor = Color.PaleTurquoise;
+            label7.Dock = DockStyle.Top;
+            label7.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label7.Location = new Point(0, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(198, 27);
+            label7.TabIndex = 0;
+            label7.Text = "Personel List.";
             // 
             // label2
             // 
@@ -178,36 +210,17 @@
             label6.TabIndex = 10;
             label6.Text = "Adres";
             // 
-            // label7
-            // 
-            label7.BackColor = Color.PaleTurquoise;
-            label7.Dock = DockStyle.Top;
-            label7.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label7.Location = new Point(0, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(198, 27);
-            label7.TabIndex = 0;
-            label7.Text = "Personel List.";
-            // 
-            // lbPersonel
-            // 
-            lbPersonel.Dock = DockStyle.Fill;
-            lbPersonel.FormattingEnabled = true;
-            lbPersonel.Location = new Point(0, 27);
-            lbPersonel.Name = "lbPersonel";
-            lbPersonel.Size = new Size(198, 403);
-            lbPersonel.TabIndex = 1;
-            // 
             // btnEkle
             // 
             btnEkle.BackColor = Color.Lime;
             btnEkle.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            btnEkle.Location = new Point(653, 305);
+            btnEkle.Location = new Point(653, 263);
             btnEkle.Name = "btnEkle";
             btnEkle.Size = new Size(135, 39);
             btnEkle.TabIndex = 12;
             btnEkle.Text = "Ekle/Güncelle";
             btnEkle.UseVisualStyleBackColor = false;
+            btnEkle.Click += btnEkle_Click;
             // 
             // btnSil
             // 
@@ -220,47 +233,52 @@
             btnSil.TabIndex = 13;
             btnSil.Text = "Sil";
             btnSil.UseVisualStyleBackColor = false;
+            btnSil.Click += btnSil_Click;
             // 
             // btnYeni
             // 
             btnYeni.BackColor = Color.Yellow;
             btnYeni.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
             btnYeni.ForeColor = SystemColors.ControlText;
-            btnYeni.Location = new Point(653, 359);
+            btnYeni.Location = new Point(653, 313);
             btnYeni.Name = "btnYeni";
             btnYeni.Size = new Size(135, 43);
             btnYeni.TabIndex = 14;
             btnYeni.Text = "Yeni";
             btnYeni.UseVisualStyleBackColor = false;
+            btnYeni.Click += btnYeni_Click;
             // 
-            // pictureBox1
+            // pbYeni
             // 
-            pictureBox1.Image = Properties.Resources._new;
-            pictureBox1.Location = new Point(199, 50);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(67, 50);
-            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox1.TabIndex = 15;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            pbYeni.Image = Properties.Resources._new;
+            pbYeni.Location = new Point(199, 50);
+            pbYeni.Name = "pbYeni";
+            pbYeni.Size = new Size(67, 50);
+            pbYeni.SizeMode = PictureBoxSizeMode.CenterImage;
+            pbYeni.TabIndex = 15;
+            pbYeni.TabStop = false;
+            pbYeni.Click += pictureBox1_Click;
             // 
-            // pictureBox2
+            // btnKaydet
             // 
-            pictureBox2.Image = Properties.Resources.user_avatar;
-            pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(111, 50);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 16;
-            pictureBox2.TabStop = false;
+            btnKaydet.BackColor = SystemColors.ActiveCaption;
+            btnKaydet.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            btnKaydet.Location = new Point(653, 370);
+            btnKaydet.Name = "btnKaydet";
+            btnKaydet.Size = new Size(135, 39);
+            btnKaydet.TabIndex = 16;
+            btnKaydet.Text = "Kaydet";
+            btnKaydet.UseVisualStyleBackColor = false;
+            btnKaydet.Click += btnKaydet_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PeachPuff;
-            ClientSize = new Size(800, 480);
-            Controls.Add(pictureBox1);
+            ClientSize = new Size(800, 478);
+            Controls.Add(btnKaydet);
+            Controls.Add(pbYeni);
             Controls.Add(btnYeni);
             Controls.Add(btnSil);
             Controls.Add(btnEkle);
@@ -280,9 +298,9 @@
             Text = "Form1";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pbYeni).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -307,7 +325,8 @@
         private Button btnEkle;
         private Button btnSil;
         private Button btnYeni;
-        private PictureBox pictureBox1;
+        private PictureBox pbYeni;
         private PictureBox pictureBox2;
+        private Button btnKaydet;
     }
 }

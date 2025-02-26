@@ -12,6 +12,7 @@ namespace PersonelApp
         public string Soyad {  get; set; }
         public string Tel {  get; set; }
         public string Adres {  get; set; }
+        public string FullName => $"{Ad} {Soyad}";
 
         private int yas;//field
         public int Yas//backing field property 
